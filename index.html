@@ -1,18 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent IT - Homepage</title>
-    <link rel="stylesheet" href="homestyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rent IT – Find Your Perfect Home in Dhaka</title>
+
+  <!-- Bootstrap 5 + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #667eea;
+      --dark: #1e293b;
+      --success: #10b981;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .navbar {
+      background: rgba(30, 41, 59, 0.95) !important;
+      backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .hero {
+      height: 100vh;
+      min-height: 650px;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(transparent, #f8fafc);
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .hero img.logo {
+      height: 100px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      margin-bottom: 1rem;
+    }
+    .hero p.lead {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+    .hero .text {
+      font-size: 1.15rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+    .cta-button {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+    }
+    .cta-button:hover {
+      background: #5a67d8;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(102,126,234,0.5);
+    }
+    .features {
+      padding: 6rem 0;
+      background: white;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-radius: 20px;
+      transition: all 0.4s;
+    }
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .feature-card i {
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 4rem 0 2rem;
+    }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .lead { font-size: 1.2rem; }
+      .hero .text { font-size: 1rem; }
+      .hero img.logo { height: 80px; }
+      .cta-button { padding: 0.9rem 2.5rem; font-size: 1.1rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <img src="rent-logo.png" alt="Rent IT Logo" class="logo">
-        <h1>Welcome to Rent IT</h1>
-        <p class="heading">We open the doors to a world of remarkable living experiences.</p>
-        <p class="text">Discover your perfect rental apartment with us, where comfort, convenience, and style converge. Our mission is to connect you with the finest rental properties, offering a seamless journey to find the space that resonates with your unique lifestyle. Explore our curated selection of apartments, each thoughtfully chosen to provide you with the utmost comfort and quality. Whether you're seeking a cozy urban retreat or a spacious suburban haven, RENT IT is your trusted partner in finding the ideal place to call home.</p>
-        <a href="featuredprojects.html" class="cta-button">View Featured Projects</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#" onclick="checkAndRedirect()">
+        <img src="rent-logo.png" alt="Rent IT" style="height:40px; margin-right:10px;"> Rent IT
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="featuredprojects.html">Browse Apartments</a></li>
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">List Property</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="rent-logo.png" alt="Rent IT Logo" class="logo">
+      <h1>Welcome to Rent IT</h1>
+      <p class="lead">We open the doors to a world of remarkable living experiences</p>
+      <p class="text">
+        Discover your perfect rental apartment with us, where comfort, convenience, and style converge. 
+        Our mission is to connect you with the finest rental properties across Dhaka — from cozy studios in Gulshan 
+        to spacious family homes in Bashundhara. Every listing is verified, every owner trusted.
+      </p>
+      <a href="featuredprojects.html" class="cta-button">
+        View Featured Apartments
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold" style="color:var(--dark)">Why Choose Rent IT?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Verified Listings</h4>
+            <p>Every apartment is personally verified for authenticity and quality.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="fas fa-handshake"></i>
+            <h4>Trusted Owners</h4>
+            <p>Work directly with reputable developers and landlords.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="fas fa-headset"></i>
+            <h4>24/7 Support</h4>
+            <p>Dedicated team ready to help you find your dream home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>Address</h5>
+          <p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229, Bangladesh</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Contact</h5>
+          <p>info@rentit.com<br>Hotline: +880-23464</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="featuredprojects.html">All Apartments</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center mb-0">© 2025 Rent IT – Your Trusted Rental Partner in Dhaka</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function checkAndRedirect() {
+      fetch('session_status.php')
+        .then(r => r.text())
+        .then(d => d.trim() === "true" ? location.href = "dashboard.php" : location.href = "featuredprojects.html")
+        .catch(() => location.href = "featuredprojects.html");
+    }
+  </script>
 </body>
 </html>

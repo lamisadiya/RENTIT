@@ -1,85 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script>
-        function checkAndRedirect() {
-            fetch('session_status.php')
-                .then(response => response.text())
-                .then(data => {
-                    if (data === "true") {
-                        window.location.href = "dashboard.php"; // Redirect to dashboard if logged in
-                    } else {
-                        window.location.href = "featuredprojects.html"; // Redirect to index.html if not logged in
-                    }
-                });
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valeria – Modern Luxury Apartment in Bashundhara | Rent IT</title>
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #8b5cf6;   /* Beautiful violet for Valeria */
+      --dark: #1e293b;
+      --light: #faf5ff;
+      --accent: #ec4899;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light);
+      margin: 0;
+    }
+    .navbar {
+      background: var(--dark) !important;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .hero-img {
+      width: 100%;
+      height: 75vh;
+      object-fit: cover;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+    }
+    .valeria-section {
+      background: linear-gradient(135deg, #f3e8ff 0%, #fae8ff 100%);
+      margin: -10rem auto 7rem;
+      border-radius: 40px;
+      position: relative;
+      z-index: 10;
+      padding: 7rem 2rem 5rem;
+      box-shadow: 0 40px 100px rgba(139,92,246,0.25);
+    }
+    .price-highlight {
+      font-size: 3.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-shadow: 0 6px 20px rgba(139,92,246,0.3);
+    }
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+    }
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(139,92,246,0.3);
+    }
+    .feature-card i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* RESPONSIVE BUTTONS – BULLETPROOF */
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .action-buttons .btn {
+      flex: 1;
+      min-width: 280px;
+      padding: 1.2rem 1.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .btn-violet {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-violet:hover {
+      background: #7c3aed;
+      color: white;
+      transform: translateY(-6px);
+    }
+
+    .footer {
+      background: var(--dark);
+      color: #e2e8f0;
+      padding: 6rem 0 2rem;
+      margin-top: 10rem;
+    }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      .hero-img { height: 55vh; border-radius: 0 0 25px 25px; }
+      .valeria-section { margin: -6rem 1rem 5rem; border-radius: 25px; padding: 5rem 1.5rem; }
+      .price-highlight { font-size: 2.7rem; }
+      .display-4 { font-size: 2.4rem; }
+      .action-buttons .btn {
+        min-width: 100% !important;   /* Full width on mobile */
+        margin-bottom: 0.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="javascript:void(0);" onclick="checkAndRedirect()">Rent IT</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="addapartment.html">Add Apartment</a></li>
+
+  <!-- Navbar
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#" onclick="checkAndRedirect()">Rent IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">Add Apartment</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
         </ul>
-    </nav>
-    <div class="intro">
-        <div class="intro-left">
-            <img class="intro-logo" src="1.webp" alt="">
-        </div>
-        <div class="intro-right">
-            <div class="intro-title">
-                <h1>Valeria</h1>
-            </div>
-            <div class="intro-des">
-                <p>Valeria, a haven of contemporary elegance and timeless charm that offers a luxurious lifestyle beyond compare. Nestled in a sought-after location, this exceptional house showcases the perfect fusion of sleek modern design and comfortable living, providing an idyllic sanctuary you'll be delighted to call your own. Valeria boasts a cutting-edge architectural design that seamlessly combines modern aesthetics with functional practicality. Every detail, from the clean lines to the premium finishes, reflects a commitment to sophistication and style.</p>
-                <br><b>SquareFeet:</b> 1200sq/ft
-                <br><b>Rent:</b> 55K
-                <br><b>Number of Rooms:</b> 2
-                <br><button class="submit-button"><a href="./ownerprofile.html"><b>View Owner's profile</b></a></button>
-                <br><button class="submit-button"><a href="./rentalapplicationform.html"><b>Submit Rental Application</b></a></button>
-                <br><button class="submit-button"><a href="./payment.html"><b>Pay rent</b></a></button>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="footer" id="Footer">
-        <div class="foot">
-            <div class="foot-box">
-                <div class="foot-left">
-                    <div class="foot-title"><b>Address</b></div>
-                    <div class="foot-info">Plot 16 Aftab Uddin Ahmed Rd, Dhaka 1229</div>
-                </div>
-                <div class="foot-left">
-                    <div class="foot-title"><b>Email</b></div>
-                    <div class="foot-info">info@rentit.com</div>
-                </div>
-                <div class="foot-left">
-                    <div class="foot-title"><b>Hotline</b></div>
-                    <div class="foot-info">23464</div>
-                </div>
+  </nav>
+
+  <!-- Hero Image -->
+  <img src="1.webp" alt="Valeria – Modern Luxury in Bashundhara" class="hero-img">
+
+  <!-- Valeria Details Section -->
+  <section class="valeria-section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Left: Image -->
+        <div class="col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-lg">
+            <img src="1.webp" alt="Valeria Interior" class="img-fluid w-100" style="height:650px; object-fit:cover;">
+            <div class="position-absolute top-0 start-0 m-4 bg-primary text-white px-5 py-3 rounded-pill fw-bold fs-5">
+              BEST VALUE
             </div>
-            <div class="foot-box">
-                <div class="foot-right">
-                    <div class="foot-title"><b>Customer Service</b></div>
-                    <div class="foot-info">
-                        <p><a href="">Terms & Conditions</a></p>
-                        <p><a href="">Return Policy</a></p>
-                        <p><a href="">Privacy Policy</a></p>
-                    </div>
-                </div>
-                <div class="foot-social">
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#"><i class="fas fa-code"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Right: Content -->
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-4 fw-bold mb-3" style="color:#1e293b;">Valeria</h1>
+          <p class="lead fw-semibold mb-4" style="color:#8b5cf6;">
+            Bashundhara R/A, Dhaka
+          </p>
+
+          <p class="fs-5 text-muted lh-lg mb-5">
+            <strong>Valeria</strong> — a haven of contemporary elegance and timeless charm. This exceptional residence blends sleek modern design with cozy comfort, offering the perfect fusion of style and practicality. Premium finishes, smart layout, and abundant natural light make it the ideal urban sanctuary.
+          </p>
+
+          <!-- Price -->
+          <div class="mb-5 p-5 bg-white rounded-4 shadow">
+            <div class="price-highlight">৳55,000 <small class="fs-4 text-muted fw-normal">/month</small></div>
+          </div>
+
+          <!-- Features -->
+          <div class="row g-4 mb-5">
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-ruler-combined"></i>
+                <h5 class="fw-bold">1,200 sq ft</h5>
+                <small class="text-muted">Smart Layout</small>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-bed"></i>
+                <h5 class="fw-bold">2 Bedrooms</h5>
+                <small class="text-muted">Cozy & Modern</small>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-wind"></i>
+                <h5 class="fw-bold">Air Conditioned</h5>
+                <small class="text-muted">Full Cooling</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESPONSIVE BUTTONS (PERFECT ON MOBILE) -->
+          <div class="action-buttons">
+            <a href="ownerprofile.html" class="btn btn-outline-dark btn-lg">
+              View Owner Profile
+            </a>
+            <a href="rentalapplicationform.html" class="btn btn-violet btn-lg">
+              Apply Now
+            </a>
+            <a href="payment.html" class="btn btn-success btn-lg">
+              Pay Rent
+            </a>
+          </div>
+
+          <div class="text-center mt-5">
+            <small class="text-primary fw-bold">
+              Verified Listing • Ready to Move • 4.9/5 (62 Reviews)
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4"><h5>Address</h5><p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229</p></div>
+        <div class="col-md-4 mb-4"><h5>Contact</h5><p>info@rentit.com<br>Hotline: +880-23464</p></div>
+        <div class="col-md-4 mb-4"><h5>Links</h5><ul class="list-unstyled"><li><a href="#">Terms</a></li><li><a href="#">Privacy</a></li></ul></div>
+      </div>
+      <hr>
+      <p class="text-center mb-0">© 2025 Rent IT – Find Your Perfect Home in Dhaka</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function checkAndRedirect() {
+      fetch('session_status.php')
+        .then(r => r.text())
+        .then(d => d.trim() === "true" ? location.href = "dashboard.php" : location.href = "featuredprojects.html")
+        .catch(() => location.href = "featuredprojects.html");
+    }
+  </script>
 </body>
 </html>

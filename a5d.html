@@ -1,19 +1,248 @@
-<div class="intro-left">
-    <img class="intro-logo" src="1.webp" alt="">
-</div>
-<div class="intro-right">
-    <div class="intro-title">
-        <h1>Magnifico</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magnifico – Ultra-Luxury Apartment in Gulshan | Rent IT</title>
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --dark: #0f172a;
+      --light: #f8fafc;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--light);
+      margin: 0;
+    }
+
+    .navbar {
+      background: var(--dark) !important;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 78vh;
+      object-fit: cover;
+      border-radius: 0 0 45px 45px;
+      box-shadow: 0 35px 80px rgba(0,0,0,0.45);
+    }
+
+    .magnifico-showcase {
+      background: linear-gradient(135deg, #fff8e1 0%, #fefce8 100%);
+      margin: -11rem auto 8rem;
+      border-radius: 45px;
+      position: relative;
+      z-index: 10;
+      padding: 8rem 2rem 6rem;
+      border: 5px solid var(--gold);
+      box-shadow: 0 50px 120px rgba(212,175,55,0.35);
+    }
+
+    .price-glow {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(212,175,55,0.7);
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2.2rem;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+      transition: all 0.5s;
+    }
+    .feature-card:hover {
+      transform: translateY(-20px);
+      box-shadow: 0 35px 70px rgba(212,175,55,0.4);
+    }
+    .feature-card i {
+      font-size: 3.2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* PERFECTLY RESPONSIVE BUTTONS */
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .action-buttons .btn {
+      flex: 1;
+      min-width: 280px;
+      padding: 1.3rem 2rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.4s;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #1a1200;
+    }
+    .btn-gold:hover {
+      background: #b8941b;
+      color: white;
+      transform: translateY(-8px);
+    }
+
+    .footer {
+      background: var(--dark);
+      color: #e2e8f0;
+      padding: 7rem 0 2rem;
+      margin-top: 12rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-img { height: 55vh; border-radius: 0 0 30px 30px; }
+      .magnifico-showcase { margin: -7rem 1rem 5rem; border-radius: 30px; padding: 6rem 1.5rem 4rem; }
+      .price-glow { font-size: 2.8rem; }
+      .display-4 { font-size: 2.5rem; }
+      .action-buttons .btn { min-width: 100% !important; margin-bottom: 1rem; }
+      img[style*="height: 680px"] { height: 420px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#" onclick="checkAndRedirect()">Rent IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">Add Apartment</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="intro-des">
-        <p>Welcome to Magnifico, an embodiment of grandeur and sophistication that offers a lifestyle of unparalleled luxury. This prestigious residence redefines opulent living, nestled in an exclusive location where modern amenities seamlessly blend with timeless elegance to create an extraordinary living experience. Magnifico stands as a testament to impeccable design and craftsmanship. From the moment you step inside, you'll be captivated by the sheer opulence that defines every inch of this remarkable home.</p>
-        <br>
-        <br><b>SquareFeet:</b> 1200sq/ft
-        <br><b>Rent:</b> 75K
-        <br><b>Number of Rooms:</b> 2
-        <br><button class="submit-button"><a href="./ownerprofile.html"><b>View Owner's profile</b></a></button>
-        <br><button class="submit-button"><a href="./rentalapplicationform.html"><b>Submit Rental Application</b></a></button>
-        <br><button class="submit-button"><a href="./payment.html"><b>Pay rent</b></a></button>
+  </nav>
+
+  <!-- Hero Image -->
+  <img src="1.webp" alt="Magnifico – Ultra Luxury Living" class="hero-img">
+
+  <!-- Magnifico Showcase -->
+  <section class="magnifico-showcase">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Left: Image -->
+        <div class="col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-2xl">
+            <img src="1.webp" alt="Magnifico Interior" class="img-fluid w-100" style="height:680px; object-fit:cover;">
+            <div class="position-absolute top-0 start-0 m-4 bg-dark bg-opacity-85 text-warning px-5 py-3 rounded-pill fw-bold fs-5">
+              ULTRA LUXURY
+            </div>
+            <div class="position-absolute bottom-0 end-0 m-4 bg-dark bg-opacity-70 text-white px-4 py-2 rounded-3">
+              32 Photos
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Details -->
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-4 fw-bold mb-3" style="color:#1e293b;">Magnifico</h1>
+          <p class="lead fw-semibold mb-4" style="color:#d4af37;">
+            Gulshan, Dhaka
+          </p>
+
+          <p class="fs-5 text-muted lh-lg mb-5">
+            Welcome to <strong>Magnifico</strong> — an embodiment of grandeur and sophistication that offers a lifestyle of unparalleled luxury. 
+            This prestigious residence redefines opulent living with impeccable design, premium finishes, and world-class amenities.
+          </p>
+
+          <!-- Price -->
+          <div class="text-center text-lg-start mb-5 p-5 bg-white rounded-4 shadow-lg">
+            <div class="price-glow">৳75,000 <small class="fs-4 text-muted fw-normal">/month</small></div>
+          </div>
+
+          <!-- Features -->
+          <div class="row g-4 mb-5">
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-ruler-combined"></i>
+                <h5 class="fw-bold">1,200 sq ft</h5>
+                <small class="text-muted">Premium Space</small>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-bed"></i>
+                <h5 class="fw-bold">2 Bedrooms</h5>
+                <small class="text-muted">King-Sized Luxury</small>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="feature-card">
+                <i class="fas fa-gem"></i>
+                <h5 class="fw-bold">Concierge</h5>
+                <small class="text-muted">5-Star Service</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESPONSIVE BUTTONS (PERFECT ON ALL DEVICES) -->
+          <div class="action-buttons">
+            <a href="ownerprofile.html" class="btn btn-outline-dark btn-lg">
+              View Owner Profile
+            </a>
+            <a href="rentalapplicationform.html" class="btn btn-gold btn-lg">
+              Apply Exclusively
+            </a>
+            <a href="payment.html" class="btn btn-success btn-lg">
+              Pay Rent Now
+            </a>
+          </div>
+
+          <div class="text-center mt-5">
+            <small class="text-warning fw-bold">
+              Elite Verified • Immediate Move-In Ready • 5.0/5 (41 Reviews)
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4"><h5>Address</h5><p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229, Bangladesh</p></div>
+        <div class="col-md-4 mb-4"><h5>Contact</h5><p>info@rentit.com<br>Hotline: +880-23464</p></div>
+        <div class="col-md-4 mb-4"><h5>Links</h5><ul class="list-unstyled"><li><a href="#">Terms</a></li><li><a href="#">Privacy</a></li></ul></div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center mb-0">© 2025 Rent IT – Luxury Redefined</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function checkAndRedirect() {
+      fetch('session_status.php')
+        .then(r => r.text())
+        .then(d => d.trim() === "true" ? location.href = "dashboard.php" : location.href = "featuredprojects.html")
+        .catch(() => location.href = "featuredprojects.html");
+    }
+  </script>
+</body>
+</html>

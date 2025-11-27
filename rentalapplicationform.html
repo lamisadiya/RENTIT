@@ -1,162 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Rent IT</title>
-    <script src="loginCheck.js"></script>
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header ">
-          <a class="navbar-brand" href="javascript:void(0);" onclick="checkAndRedirect()">Rent IT</a>
-        </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rental Application Form – Rent IT</title>
 
-        <script>
+  <!-- Bootstrap 5 + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
+    .navbar {
+      background: rgba(0,0,0,0.25) !important;
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+    }
+    .form-header {
+      background: #1e293b;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .form-header img {
+      height: 80px;
+      margin-bottom: 0 auto 1rem;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+    }
+    .form-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+    .form-body {
+      padding: 3rem 2.5rem;
+    }
+    .section-title {
+      color: #1e293b;
+      font-weight: 700;
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+    .form-control, .form-select {
+      height: 54px;
+      border-radius: 12px;
+      padding: 0 1.2rem;
+      font-size: 1.05rem;
+    }
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background: #667eea;
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 50px;
+      border: none;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover {
+      background: #5a67d8;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(102,126,234,0.4);
+    }
+    .required::after {
+      content: " *";
+      color: #ef4444;
+    }
+    @media (max-width: 768px) {
+      .form-header { padding: 2.5rem 1.5rem; }
+      .form-body { padding: 2.5rem 1.5rem; }
+      .form-header h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
 
-
-          function checkAndRedirect() {
-  fetch('session_status.php')
-      .then(response => response.text())
-      .then(data => {
-          if (data === "true") {
-              window.location.href = "dashboard.php"; // Redirect to dashboard if logged in
-          } else {
-              window.location.href = "featuredprojects.html"; // Redirect to index.html if not logged in
-          }
-      });
-}
-      </script>
-
-
-
- 
-        <ul class="nav navbar-nav">
-          <li><a href="addapartment.html"> Add Apartment </a></li>
-          <li><a href="signup.html"> Sign In </a></li>
-
-
-        </ul>
- 
- 
-    </nav>
-    <h2 style="margin-left: 60rem;">Rental Application Form</h2>
-    <form class="rental-form">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob" name="dob" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="nid">NID Number</label>
-          <input type="text" id="nid" name="nid" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="address">Current Address</label>
-          <input type="text" id="address" name="address" class="form-control" required>
-        </div>
-        <div class="form-row">
-          <div class="col-md-6 form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" class="form-control" required>
-          </div>
-          <div class="col-md-6 form-group">
-            <label for="state">Area</label>
-            <select id="state" name="state" class="form-control" required>
-              <option value="">--Select Area--</option>
-              <option value="B">Banani</option>
-              <option value="B">Bashundhara</option>
-              <option value="G">Gulshan</option>
-              <option value="U">Uttara</option>
-              
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="zip">Zip Code</label>
-          <input type="text" id="zip" name="zip" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="rental_history">Rental History</label>
-          <textarea id="rental_history" name="rental_history" rows="4" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="employment_status">Employment Status</label>
-          <div class="form-check">
-            <input type="radio" id="employed" name="employment_status" value="employed" class="form-check-input" required>
-            <label class="form-check-label" for="employed">Employed</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="unemployed" name="employment_status" value="unemployed" class="form-check-input" required>
-            <label class="form-check-label" for="unemployed">Unemployed</label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    
-      </form>
-      
-      <div class="footer" id="Footer">
-        <div>
-            <div class="foot">
-                <div class="foot-box">
-                    <div class="foot-left">
-                        <div class="foot-title"><b>Address</b></div>
-                        <div class="foot-info">
-                            Plot 16 Aftab Uddin Ahmed Rd, Dhaka 1229
-                        </div>
-                    </div>
-                    <div class="foot-left">
-                        <div class="foot-title"><b>Email</b></div>
-                        <div class="foot-info">
-                            info@rentit.com
-                        </div>
-                    </div>
-                    <div class="foot-left">
-                        <div class="foot-title"><b>Hotline</b></div>
-                        <div class="foot-info">
-                            23464
-                        </div>
-                    </div>
-                </div>
-                <div class="foot-box">
-                    <div class="foot-right">
-                        <div class="foot-title"><b> Customer Service </b></div>
-                        <div class="foot-info">
-                            <p><a href="">Terms & Conditions</a></p>
-                            <p><a href="">Return Policy</a></p>
-                            <p><a href="">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                    <div class="foot-social">
-                      <a href="#"
-                          ><i class="fab fa-facebook-square"></i>
-                      </a>
-                      <a href="#"
-                          ><i class="fas fa-code"></i>
-                      </a>
-                      <a
-                          href="#"
-                          ><i class="fab fa-linkedin"></i>
-                      </a>
-                      
-                  </div>
-                </div>
-            </div>
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-4" href="#" onclick="checkAndRedirect()">Rent IT</a>
+      <div class="ms-auto">
+        <a href="addapartment.html" class="btn btn-outline-light me-2">Add Apartment</a>
+        <a href="login.html" class="btn btn-light">Sign In</a>
+      </div>
     </div>
+  </nav>
+
+  <!-- Main Form -->
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <img src="./rent-logo.png" alt="Rent IT Logo">
+        <h1>Rental Application Form</h1>
+        <p class="lead mb-0 opacity-90">Fill out the details below to apply for your dream home</p>
+      </div>
+
+      <div class="form-body">
+        <form action="process_rental_application.php" method="POST">
+
+          <!-- Personal Information -->
+          <h3 class="section-title">Personal Information</h3>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label required">First Name</label>
+              <input type="text" name="fname" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Last Name</label>
+              <input type="text" name="lname" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Email Address</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Phone Number</label>
+              <input type="tel" name="phone" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Date of Birth</label>
+              <input type="date" name="dob" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">NID Number</label>
+              <input type="text" name="nid" class="form-control" placeholder="e.g. 1234567890" required>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <h3 class="section-title mt-5">Current Address</h3>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label required">Street Address</label>
+              <input type="text" name="address" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label required">City</label>
+              <input type="text" name="city" class="form-control" value="Dhaka" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label required">Area</label>
+              <select name="area" class="form-select" required>
+                <option value="">-- Select Area --</option>
+                <option>Banani</option>
+                <option>Bashundhara</option>
+                <option>Gulshan</option>
+                <option>Uttara</option>
+                <option>Dhanmondi</option>
+                <option>Mirpur</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label required">Zip Code</label>
+              <input type="text" name="zip" class="form-control" required>
+            </div>
+          </div>
+
+          <!-- Additional Info -->
+          <h3 class="section-title mt-5">Additional Information</h3>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Rental History (Optional)</label>
+              <textarea name="rental_history" class="form-control" placeholder="Briefly describe your previous rentals..."></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label required">Employment Status</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="employment_status" value="employed" required>
+                <label class="form-check-label">Employed</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="employment_status" value="self-employed">
+                <label class="form-check-label">Self-Employed</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="employment_status" value="unemployed">
+                <label class="form-check-label">Unemployed</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="text-center mt-5">
+            <button type="submit" class="btn btn-submit">
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (optional, hidden on small screens) -->
+  <footer class="text-white text-center py-4 mt-5 d-none d-md-block" style="background: rgba(0,0,0,0.2); backdrop-filter: blur(10px);">
+    <p class="mb-0">© 2025 Rent IT – Making renting simple, safe & fast</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function checkAndRedirect() {
+      fetch('session_status.php')
+        .then(r => r.text())
+        .then(d => {
+          if (d.trim() === "true") window.location.href = "dashboard.php";
+          else window.location.href = "featuredprojects.html";
+        })
+        .catch(() => window.location.href = "featuredprojects.html");
+    }
+  </script>
 </body>
 </html>

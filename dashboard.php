@@ -1,202 +1,291 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html"); // Redirect to login page if not logged in
+    header("Location: login.html");
     exit();
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Rent IT</title>
-  <link rel="stylesheet" href="master.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rent IT – Featured Apartments</title>
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #ec4899;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      margin: 0;
+    }
+    .navbar {
+      background: var(--dark) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .hero {
+      height: 85vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('./R.jpeg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      border-radius: 0 0 50px 50px;
+    }
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 900;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .search-bar {
+      background: white;
+      border-radius: 50px;
+      padding: 1rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      max-width: 600px;
+    }
+    .apartment-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+      height: 100%;
+    }
+    .apartment-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(139,92,246,0.3);
+    }
+    .apartment-card img {
+      height: 220px;
+      object-fit: cover;
+      transition: all 0.4s;
+    }
+    .apartment-card:hover img {
+      transform: scale(1.1);
+    }
+    .price-tag {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+    .footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 6rem 0 2rem;
+      margin-top: 8rem;
+    }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      .hero { height: 70vh; border-radius: 0 0 30px 30px; }
+      .hero h1 { font-size: 2.8rem; }
+      .search-bar { margin: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Rent IT</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="addapartment.html">Add Apartment</a></li>
-      <li><a href="logout.php">Sign Out</a></li>
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-    </ul>
-    <div class="search-container">
-      <form>
-        <select id="location">
-          <option value="">Enter a location...</option>
-          <option value="gulshan">Gulshan</option>
-          <option value="uttara">Uttara</option>
-          <option value="bashundhara">Bashundhara</option>
-        </select>
-        <input type="button" value="Search" onclick="search()" id="search-btn">
-      </form>
-      <div id="search-results"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="#">Rent IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">Add Apartment</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Sign Out</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
- 
-    <div class="intro-img-div">
-    <img class="intro-img" src="./R.jpeg" alt="">            
-  </div>
-   
 
-    <div class="featured">
-      <div class="fe">
-        <div class="fea-title">
-            Featured projects
-        </div>
-        <div class="rent-card">
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a6.html"><img src="1.webp" alt="" class="img" /> </a>
-            </div>
-            <div class="des">
-                <b><p>Valeria</p>
-                <p>RENT: 55K</p>
-                <p>Bashundhara R/A</p></b>
-            </div>
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1 class="display-1">Find Your Dream Home</h1>
+      <p class="lead mb-4">Luxury apartments in Dhaka's best locations</p>
+
+      <!-- Search Bar -->
+      <div class="search-bar mx-auto">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-8">
+            <select id="location" class="form-select form-select-lg border-0 shadow-sm">
+              <option value="">Choose Location...</option>
+              <option value="gulshan">Gulshan</option>
+              <option value="uttara">Uttara</option>
+              <option value="bashundhara">Bashundhara</option>
+            </select>
           </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a1.html"><img src="2.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Edison Amour</p>
-                <p>RENT: 65K</p>
-                <p>Bashundhara R/A</p></b>
-                
-            </div>
+          <div class="col-md-4">
+            <button onclick="search()" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold">
+              Search
+            </button>
           </div>
-         
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a2.html"><img src="3.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Dulce Domi</p>
-                <p>RENT: 95K</p>
-                <p>Uttara</p></b>
-            </div>
-          </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a3.html"><img src="4.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Prime View</p>
-                <p>RENT: 70K</p>
-                <p>Uttara</p></b>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a4.html"><img src="2.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Rose Cottage</p>
-                <p>RENT: 85K</p>
-                <p>Gulshan</p></b>
-            </div>
-          </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a5.html"><img src="1.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Magnifico</p>
-                <p>RENT: 75K</p>
-                <p>Gulshan</p></b>
-            </div>
-          </div>
-               
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="footer" id="Footer">
-      <div>
-          <div class="foot">
-              <div class="foot-box">
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Address</b></div>
-                      <div class="foot-info">
-                          Plot 16 Aftab Uddin Ahmed Rd, Dhaka 1229
-                      </div>
-                  </div>
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Email</b></div>
-                      <div class="foot-info">
-                          info@rentit.com
-                      </div>
-                  </div>
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Hotline</b></div>
-                      <div class="foot-info">
-                          23464
-                      </div>
-                  </div>
+  <!-- Featured Apartments -->
+  <section class="container py-5">
+    <h2 class="text-center display-5 fw-bold mb-5 text-primary">Featured Apartments</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      
+      <div class="col">
+        <a href="a6.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="1.webp" alt="Valeria" class="w-100">
+            <div class="p-4">
+              <h5 class="fw-bold">Valeria</h5>
+              <p class="text-muted">Bashundhara R/A</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳55,000/month</span>
+                <small class="text-success">Available</small>
               </div>
-              <div class="foot-box">
-                  <div class="foot-right">
-                      <div class="foot-title"><b> Customer Service </b></div>
-                      <div class="foot-info">
-                          <p><a href="">Terms & Conditions</a></p>
-                          <p><a href="">Return Policy</a></p>
-                          <p><a href="">Privacy Policy</a></p>
-                      </div>
-                  </div>
-                  <div class="foot-social">
-                    <a href="#"
-                        ><i class="fab fa-facebook-square"></i>
-                    </a>
-                    <a href="#"
-                        ><i class="fas fa-code"></i>
-                    </a>
-                    <a
-                        href="#"
-                        ><i class="fab fa-linkedin"></i>
-                    </a>
-                    
-                </div>
-              </div>
+            </div>
           </div>
+        </a>
       </div>
-  </div>
 
+      <div class="col">
+        <a href="a1.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="2.webp" alt="Edison Amour">
+            <div class="p-4">
+              <h5 class="fw-bold">Edison Amour</h5>
+              <p class="text-muted">Bashundhara R/A</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳65,000/month</span>
+                <small class="text-success">Available</small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="a2.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="3.webp" alt="Dulce Domi">
+            <div class="p-4">
+              <h5 class="fw-bold">Dulce Domi</h5>
+              <p class="text-muted">Uttara</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳95,000/month</span>
+                <small class="text-success">Available</small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="a3.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="4.webp" alt="Prime View">
+            <div class="p-4">
+              <h5 class="fw-bold">Prime View</h5>
+              <p class="text-muted">Uttara</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳70,000/month</span>
+                <small class="text-success">Available</small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="a4.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="2.webp" alt="Rose Cottage">
+            <div class="p-4">
+              <h5 class="fw-bold">Rose Cottage</h5>
+              <p class="text-muted">Gulshan</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳85,000/month</span>
+                <small class="text-success">Available</small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="a5.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="1.webp" alt="Magnifico">
+            <div class="p-4">
+              <h5 class="fw-bold">Magnifico</h5>
+              <p class="text-muted">Gulshan</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag">৳75,000/month</span>
+                <small class="text-success">Available</small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>Address</h5>
+          <p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229, Bangladesh</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Contact</h5>
+          <p>info@rentit.com<br>Hotline: +880-23464</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Customer Service</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center mb-0">© 2025 Rent IT – Dhaka's Premium Rental Platform</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Check if the user is logged in before performing the search
-    function checkLoggedInForSearch() {
-      fetch('session_status.php')
-        .then(response => response.text())
-        .then(data => {
-          if (data !== "true") {
-            // Redirect to login page if not logged in
-            window.location.href = "login.html";
-          }
-        });
-    }
-
     function search() {
-      // Check if the user is logged in before performing the search
-      checkLoggedInForSearch();
-
-      var location = document.getElementById("location").value;
-
-      if (location === "gulshan") {
-        window.location.href = "Gulshanprojects.html";
-      } else if (location === "uttara") {
-        window.location.href = "Uttaraprojects.html";
-      } else if (location === "bashundhara") {
-        window.location.href = "Bashundharaprojects.html";
+      const location = document.getElementById("location").value;
+      const pages = {
+        gulshan: "Gulshanprojects.html",
+        uttara: "Uttaraprojects.html",
+        bashundhara: "Bashundharaprojects.html"
+      };
+      if (pages[location]) {
+        window.location.href = pages[location];
+      } else {
+        alert("Please select a location!");
       }
     }
   </script>

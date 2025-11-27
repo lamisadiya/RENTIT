@@ -1,19 +1,212 @@
-<div class="intro-left">
-    <img class="intro-logo" src="2.webp" alt="">
-</div>
-<div class="intro-right">
-    <div class="intro-title">
-        <h1>Rose Cottage</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rose Cottage – Luxury 3-Bed Apartment in Gulshan | Rent IT</title>
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --rose: #e91e63;
+      --dark: #1e293b;
+      --light: #fdf2f8;
+      --gray: #64748b;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--light);
+      margin: 0;
+    }
+    .navbar {
+      background: var(--dark) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .hero-img {
+      width: 100%;
+      height: 75vh;
+      object-fit: cover;
+      border-radius: 0 0 35px 35px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    }
+    .showcase {
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+      margin: -9rem auto 6rem;
+      border-radius: 35px;
+      position: relative;
+      z-index: 10;
+      padding: 6rem 0 4rem;
+      box-shadow: 0 30px 80px rgba(233,30,99,0.18);
+    }
+    .btn-rose {
+      background: var(--rose);
+      color: white;
+      border: none;
+    }
+    .btn-rose:hover {
+      background: #c2185b;
+      color: white;
+      transform: translateY(-5px);
+    }
+    .shadow-2xl {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    }
+    .price-highlight {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--rose);
+    }
+    .footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 6rem 0 2rem;
+      margin-top: 8rem;
+    }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      .hero-img { height: 55vh; border-radius: 0 0 20px 20px; }
+      .showcase { margin: -5rem 1rem 4rem; border-radius: 24px; padding: 4rem 1rem 3rem; }
+      .price-highlight { font-size: 2.6rem; }
+      .display-4 { font-size: 2.4rem; }
+      .hero-img + .container img { height: 380px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#" onclick="checkAndRedirect()">Rent IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">Add Apartment</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="intro-des">
-        <p>Step into the idyllic world of Rose Cottage, a haven of timeless beauty and rustic elegance that captures the essence of peaceful living. Nestled in a picturesque setting, this enchanting house offers a perfect blend of vintage charm and modern comfort, promising an unforgettable escape from the everyday. Rose Cottage is a charming blend of old-world charisma and contemporary amenities. The cottage's classic architecture and delicate detailing evoke a sense of nostalgia, while modern updates ensure a comfortable and convenient lifestyle...</p>
-        <br>
-        <br><b>SquareFeet:</b> 1200sq/ft
-        <br><b>Rent:</b> 85K
-        <br><b>Number of Rooms:</b> 3
-        <br><button class="submit-button"><a href="./ownerprofile.html"><b>View Owner's profile</b></a></button>
-        <br><button class="submit-button"><a href="./rentalapplicationform.html"><b>Submit Rental Application</b></a></button>
-        <br><button class="submit-button"><a href="./payment.html"><b>Pay rent</b></a></button>
+  </nav>
+
+  <!-- Hero Image -->
+  <img src="2.webp" alt="Rose Cottage Exterior" class="hero-img">
+
+  <!-- Main Showcase Section -->
+  <section class="showcase">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Left: Image -->
+        <div class="col-lg-6">
+          <div class="position-relative rounded-4 overflow-hidden shadow-2xl">
+            <img src="2.webp" alt="Rose Cottage Interior" class="img-fluid w-100" style="height:620px; object-fit:cover;">
+            <div class="position-absolute top-0 start-0 m-4 bg-rose text-white px-4 py-2 rounded-pill fw-bold">
+              Most Loved Property
+            </div>
+            <div class="position-absolute bottom-0 end-0 m-4 bg-dark bg-opacity-75 text-white px-4 py-3 rounded-3">
+              24 Photos
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Details -->
+        <div class="col-lg-6">
+          <h1 class="display-4 fw-bold mb-3" style="color:#1e293b;">Rose Cottage</h1>
+          <p class="lead text-primary fw-semibold mb-4">
+            Gulshan, Dhaka
+          </p>
+
+          <p class="fs-5 text-muted lh-lg mb-5">
+            Step into the idyllic world of <strong>Rose Cottage</strong> — a haven of timeless beauty and rustic elegance that captures the essence of peaceful living. 
+            Nestled in the heart of Gulshan, this enchanting residence offers a perfect blend of vintage charm and modern comfort, promising an unforgettable escape from the everyday.
+          </p>
+
+          <!-- Price -->
+          <div class="text-center text-lg-start mb-5 p-4 bg-rose bg-opacity-10 rounded-4 border-start border-5 border-rose">
+            <div class="price-highlight">৳85,000 <small class="fs-4 text-muted fw-normal">/month</small></div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="row g-4 mb-5">
+            <div class="col-6 col-md-4">
+              <div class="text-center p-4 bg-white rounded-3 shadow-sm border-start border-primary border-5">
+                <i class="fas fa-ruler-combined fa-2x text-primary mb-3"></i>
+                <h5 class="fw-bold">1,200 sq ft</h5>
+                <small class="text-muted">Total Area</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="text-center p-4 bg-white rounded-3 shadow-sm border-start border-success border-5">
+                <i class="fas fa-bed fa-2x text-success mb-3"></i>
+                <h5 class="fw-bold">3 Bedrooms</h5>
+                <small class="text-muted">Family Ready</small>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="text-center p-4 bg-white rounded-3 shadow-sm border-start border-warning border-5">
+                <i class="fas fa-bath fa-2x text-warning mb-3"></i>
+                <h5 class="fw-bold">3 Bathrooms</h5>
+                <small class="text-muted">En-suite Master</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-grid d-lg-flex gap-3 justify-content-lg-start">
+            <a href="ownerprofile.html" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill fw-bold">
+              View Owner Profile
+            </a>
+            <a href="rentalapplicationform.html" class="btn btn-rose btn-lg px-5 py-3 rounded-pill fw-bold">
+              Apply Now
+            </a>
+            <a href="payment.html" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold">
+              Pay Rent
+            </a>
+          </div>
+
+          <!-- Trust Line -->
+          <div class="mt-5 pt-4 border-top text-center text-lg-start">
+            <small class="text-success fw-semibold">
+              100% Verified • Available Immediately • Rated 4.9/5 by 38 tenants
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4"><h5>Address</h5><p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229, Bangladesh</p></div>
+        <div class="col-md-4 mb-4"><h5>Contact</h5><p>info@rentit.com<br>Hotline: +880-23464</p></div>
+        <div class="col-md-4 mb-4"><h5>Customer Service</h5><ul class="list-unstyled"><li><a href="#">Terms & Conditions</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center mb-0">© 2025 Rent IT – Your Trusted Rental Partner in Dhaka</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function checkAndRedirect() {
+      fetch('session_status.php')
+        .then(r => r.text())
+        .then(d => d.trim() === "true" ? location.href = "dashboard.php" : location.href = "featuredprojects.html")
+        .catch(() => location.href = "featuredprojects.html");
+    }
+  </script>
+</body>
+</html>

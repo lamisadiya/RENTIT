@@ -1,201 +1,322 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Rent IT</title>
-  <link rel="stylesheet" href="master.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Featured Apartments in Dhaka – Rent IT</title>
+
+  <!-- Bootstrap 5 + Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #667eea;
+      --dark: #1e293b;
+      --accent: #10b981;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8fafc;
+      margin: 0;
+    }
+    .navbar {
+      background: rgba(30,41,59,0.95) !important;
+      backdrop-filter: blur(12px);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+                  url('./R.jpeg') center/cover no-repeat;
+      height: 85vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      text-shadow: 0 6px 25px rgba(0,0,0,0.7);
+    }
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 1.5rem auto;
+      opacity: 0.95;
+    }
+    .search-bar {
+      max-width: 700px;
+      margin: 2rem auto 0;
+      display: flex;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .search-bar select,
+    .search-bar button {
+      height: 70px;
+      font-size: 1.2rem;
+    }
+    .search-bar select {
+      border: none;
+      padding: 0 2rem;
+      border-radius: 50px 0 0 50px;
+      background: white;
+    }
+    .search-bar button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0 3rem;
+      border-radius: 0 50px 50px 0;
+      font-weight: 700;
+      transition: all 0.4s;
+    }
+    .search-bar button:hover {
+      background: #5a67d8;
+      transform: scale(1.05);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 4rem 0 3rem;
+    }
+    .apartment-card {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      background: white;
+      height: 100%;
+    }
+    .apartment-card:hover {
+      transform: translateY(-16px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+    .card-img {
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .apartment-card:hover .card-img {
+      transform: scale(1.1);
+    }
+    .card-body {
+      padding: 1.8rem;
+    }
+    .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .location {
+      color: #64748b;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    .badge-area {
+      background: var(--accent);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 5rem 0 2rem;
+      margin-top: 6rem;
+    }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.6rem; }
+      .hero p { font-size: 1.15rem; }
+      .search-bar { 
+        flex-direction: column; 
+        border-radius: 20px; 
+      }
+      .search-bar select,
+      .search-bar button { 
+        border-radius: 20px !important; 
+        margin: 0.5rem 1rem; 
+        height: 60px; 
+      }
+      .card-img { height: 220px; }
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Rent IT</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="addapartment.html">Add Apartment</a></li>
-      <li class="nav-item"><a class="nav-link" href="Login.html">Sign In</a></li>
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-      <li class="nav-item"><a class="nav-link" href="adminLogin.html">Admin</a></li>
-    </ul>
-    <div class="search-container">
-      <form>
-        <select id="location">
-          <option value="">Enter a location...</option>
-          <option value="gulshan">Gulshan</option>
-          <option value="uttara">Uttara</option>
-          <option value="bashundhara">Bashundhara</option>
-        </select>
-        <input type="button" value="Search" onclick="search()" id="search-btn">
-      </form>
-      <div id="search-results"></div>
+  <!-- Navbar + Search -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="#">Rent IT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="addapartment.html">List Property</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
- 
-    <div class="intro-img-div">
-      <img class="intro-img" src="./R.jpeg" alt="">            
-  </div>
 
-  <div class="featured">
-    <div class="fe">
-      <div class="fea-title">
-        Featured projects
+  <!-- Hero with Search -->
+  <section class="hero">
+    <div class="container">
+      <h1>Find Your Dream Apartment in Dhaka</h1>
+      <p>Luxury rentals in Gulshan, Bashundhara, Uttara & more — verified, safe, ready to move in.</p>
+
+      <div class="search-bar">
+        <select id="location" class="form-select">
+          <option value="">Choose Location</option>
+          <option value="gulshan">Gulshan</option>
+          <option value="uttara">Uttara</option>
+          <option value="bashundhara">Bashundhara R/A</option>
+          <option value="banani">Banani</option>
+          <option value="dhanmondi">Dhanmondi</option>
+        </select>
+        <button onclick="search()">Search Now</button>
       </div>
-      <div class="rent-card-container">
-        <div class="rent-card">
-          <!-- Rent cards go here -->
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a6.html"><img src="1.webp" alt="" class="img" /> </a>
-            </div>
-            <div class="des">
-              <b>
-                <p>Valeria</p>
-                <p>RENT: 55K</p>
-                <p>Bashundhara R/A</p>
-              </b>
+    </div>
+  </section>
+
+  <!-- Featured Apartments -->
+  <div class="container">
+    <h2 class="section-title">Featured Apartments</h2>
+    <div class="row g-4">
+      <!-- Repeat this block for each apartment -->
+      <div class="col-md-6 col-lg-4">
+        <a href="a6.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="1.webp" alt="Valeria" class="card-img w-100">
+            <div class="card-body">
+              <h5 class="fw-bold">Valeria</h5>
+              <div class="price">৳55,000 <small>/month</small></div>
+              <p class="location">Bashundhara R/A</p>
+              <span class="badge-area">Ready to Move</span>
             </div>
           </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a1.html"><img src="2.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Edison Amour</p>
-                <p>RENT: 65K</p>
-                <p>Bashundhara R/A</p></b>
-                
-            </div>
-          </div>
-         
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a2.html"><img src="3.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Dulce Domi</p>
-                <p>RENT: 95K</p>
-                <p>Uttara</p></b>
+        </a>
+      </div>
+      <!-- ... (other 5 cards – same as before) ... -->
+      <div class="col-md-6 col-lg-4">
+        <a href="a1.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="2.webp" alt="Edison Amour" class="card-img w-100">
+            <div class="card-body">
+              <h5>Edison Amour</h5>
+              <div class="price">৳65,000 <small>/month</small></div>
+              <p class="location">Bashundhara R/A</p>
+              <span class="badge-area">New Launch</span>
             </div>
           </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a3.html"><img src="4.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Prime View</p>
-                <p>RENT: 70K</p>
-                <p>Uttara</p></b>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a4.html"><img src="2.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Rose Cottage</p>
-                <p>RENT: 85K</p>
-                <p>Gulshan</p></b>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="a2.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="3.webp" alt="Dulce Domi" class="card-img w-100">
+            <div class="card-body">
+              <h5>Dulce Domi</h5>
+              <div class="price">৳95,000 <small>/month</small></div>
+              <p class="location">Uttara</p>
+              <span class="badge-area">Luxury</span>
             </div>
           </div>
-
-
-          <div class="mini-card">
-            <div class="mini-img">
-              <a href="./a5.html"><img src="1.webp" alt="" class="img" /></a>
-            </div>
-            <div class="des">
-                <b><p>Magnifico</p>
-                <p>RENT: 75K</p>
-                <p>Gulshan</p></b>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="a3.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="4.webp" alt="Prime View" class="card-img w-100">
+            <div class="card-body">
+              <h5>Prime View</h5>
+              <div class="price">৳70,000 <small>/month</small></div>
+              <p class="location">Uttara</p>
+              <span class="badge-area">Lake View</span>
             </div>
           </div>
-               
-        </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="a4.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="2.webp" alt="Rose Cottage" class="card-img w-100">
+            <div class="card-body">
+              <h5>Rose Cottage</h5>
+              <div class="price">৳85,000 <small>/month</small></div>
+              <p class="location">Gulshan</p>
+              <span class="badge-area">Premium</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="a5.html" class="text-decoration-none">
+          <div class="apartment-card">
+            <img src="1.webp" alt="Magnifico" class="card-img w-100">
+            <div class="card-body">
+              <h5>Magnifico</h5>
+              <div class="price">৳75,000 <small>/month</small></div>
+              <p class="location">Gulshan</p>
+              <span class="badge-area">Exclusive</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 
-    <div class="footer" id="Footer">
-      <div>
-          <div class="foot">
-              <div class="foot-box">
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Address</b></div>
-                      <div class="foot-info">
-                          Plot 16 Aftab Uddin Ahmed Rd, Dhaka 1229
-                      </div>
-                  </div>
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Email</b></div>
-                      <div class="foot-info">
-                          info@rentit.com
-                      </div>
-                  </div>
-                  <div class="foot-left">
-                      <div class="foot-title"><b>Hotline</b></div>
-                      <div class="foot-info">
-                          23464
-                      </div>
-                  </div>
-              </div>
-              <div class="foot-box">
-                  <div class="foot-right">
-                      <div class="foot-title"><b> Customer Service </b></div>
-                      <div class="foot-info">
-                          <p><a href="">Terms & Conditions</a></p>
-                          <p><a href="">Return Policy</a></p>
-                          <p><a href="">Privacy Policy</a></p>
-                      </div>
-                  </div>
-                  <div class="foot-social">
-                    <a href="#"
-                        ><i class="fab fa-facebook-square"></i>
-                    </a>
-                    <a href="#"
-                        ><i class="fas fa-code"></i>
-                    </a>
-                    <a
-                        href="#"
-                        ><i class="fab fa-linkedin"></i>
-                    </a>
-                    
-                </div>
-              </div>
-          </div>
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>Address</h5>
+          <p>Plot 16 Aftab Uddin Ahmed Rd<br>Dhaka 1229</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Contact</h5>
+          <p>info@rentit.com<br>Hotline: +880-23464</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Follow Us</h5>
+          <a href="#" class="me-3"><i class="fab fa-facebook-square fa-2x"></i></a>
+          <a href="#" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+          <a href="https://github.com/lamisadiya/RENT-IT"><i class="fab fa-github-square fa-2x"></i></a>
+        </div>
       </div>
-  </div>
+      <hr>
+      <p class="text-center mb-0">© 2025 Rent IT – Luxury Rentals Made Simple</p>
+    </div>
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Check if the user is logged in before performing the search
-    function checkLoggedInForSearch() {
-      fetch('session_status.php')
-        .then(response => response.text())
-        .then(data => {
-          if (data !== "true") {
-            // Redirect to login page if not logged in
-            window.location.href = "login.html";
-          }
-        });
-    }
-
     function search() {
-      // Check if the user is logged in before performing the search
-      checkLoggedInForSearch();
-
-      var location = document.getElementById("location").value;
-
-      if (location === "gulshan") {
-        window.location.href = "/Gulshanprojects.html";
-      } else if (location === "uttara") {
-        window.location.href = "/Uttaraprojects.html";
-      } else if (location === "bashundhara") {
-        window.location.href = "/Bashundharaprojects.html";
+      const location = document.getElementById("location").value;
+      const map = {
+        gulshan: "Gulshanprojects.html",
+        uttara: "Uttaraprojects.html",
+        bashundhara: "Bashundharaprojects.html"
+      };
+      if (map[location]) {
+        window.location.href = map[location];
       }
     }
   </script>
